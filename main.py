@@ -1,4 +1,4 @@
-import asyncio
+import os
 import datetime
 import json
 import tkinter as tk
@@ -14,6 +14,23 @@ lFrame = None
 mWindow = None
 FContactOverwritten: bool = False
 MContactOverwritten: bool = False
+
+
+def isDBExists():
+    # Define the root directory
+    ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+    # Define the path to the file you want to check
+    file_path = os.path.join(ROOT_DIR, 'file_name')
+
+    # Check if the file exists
+    file_exists = os.path.exists(file_path)
+    return file_exists
+
+
+if not isDBExists():
+    with open('data.json', 'w') as file:
+        file.write('{\n    "classes": []\n}')
 
 
 def assign_new_student(_class):
